@@ -1,33 +1,69 @@
-exports.chain = require('./base/chain.js');
-exports.config = require('./base/config.js');
-exports.constant = require('./base/constant.js');
-exports.element = require('./base/element.js');
-exports.event = require('./base/event.js');
-exports.global = require('./base/global.js');
-exports.klass = require('./base/klass.js');
-exports.platform = require('./base/platform.js');
-exports.util = require('./base/util.js');
-exports.ui = require('./ui/base.js');
-exports.uiMaskMask = require('./ui/mask/mask.js');
-exports.utilAjaxTag = require('./util/ajax/tag.js');
-exports.utilAjaxXdr = require('./util/ajax/xdr.js');
-exports.utilAnimationEaseinout = require('./util/animation/easeinout.js');
-exports.utilCacheCache = require('./util/cache/cache.js');
-exports.utilCacheCookie = require('./util/cache/cookie.js');
-exports.utilChainNodeList = require('./util/chain/NodeList.js');
-exports.utilChainChainable = require('./util/chain/chainable.js');
-exports.utilEditorCommand = require('./util/editor/command.js');
-exports.utilEditorCommandSimple = require('./util/editor/command/simple.js');
-exports.utilEncodeJson = require('./util/encode/json.js');
-exports.utilEvent = require('./util/event.js');
-exports.utilEventEvent = require('./util/event/event.js');
-exports.utilFileSelect = require('./util/file/select.js');
-exports.utilFlashFlash = require('./util/flash/flash.js');
-exports.utilFormForm = require('./util/form/form.js');
-exports.utilHistoryHistory = require('./util/history/history.js');
-exports.utilLazyImage = require('./util/lazy/image.js');
-exports.utilSuggestSuggest = require('./util/suggest/suggest.js');
-exports.utilTabTab = require('./util/tab/tab.js');
-exports.utilTemplateJst = require('./util/template/jst.js');
-exports.utilTemplateTpl = require('./util/template/tpl.js');
-exports.utilTimerAnimation = require('./util/timer/animation.js');
+import chain from './base/chain.js';
+import config from './base/config.js';
+import constant from './base/constant.js';
+import element from './base/element.js';
+import event from './base/event.js';
+import global from './base/global.js';
+import klass from './base/klass.js';
+import platform from './base/platform.js';
+import util from './base/util.js';
+import ui from './ui/base.js';
+import uiMaskMask from './ui/mask/mask.js';
+import utilAjaxTag from './util/ajax/tag.js';
+import utilAjaxXdr from './util/ajax/xdr.js';
+import utilAnimationEaseinout from './util/animation/easeinout.js';
+import utilCacheCache from './util/cache/cache.js';
+import utilCacheCookie from './util/cache/cookie.js';
+import utilChainNodeList from './util/chain/NodeList.js';
+import utilChainChainable from './util/chain/chainable.js';
+import utilEditorCommand from './util/editor/command.js';
+import utilEditorCommandSimple from './util/editor/command/simple.js';
+import utilEncodeJson from './util/encode/json.js';
+import utilEvent from './util/event.js';
+import utilEventEvent from './util/event/event.js';
+import utilFileSelect from './util/file/select.js';
+import utilFlashFlash from './util/flash/flash.js';
+import utilFormForm from './util/form/form.js';
+import utilHistoryHistory from './util/history/history.js';
+import utilLazyImage from './util/lazy/image.js';
+import utilSuggestSuggest from './util/suggest/suggest.js';
+import utilTabTab from './util/tab/tab.js';
+import utilTemplateJst from './util/template/jst.js';
+import utilTemplateTpl from './util/template/tpl.js';
+import utilTimerAnimation from './util/timer/animation.js';
+
+export {
+    chain,
+    config,
+    constant,
+    element,
+    event,
+    global,
+    klass,
+    platform,
+    util,
+    ui,
+    uiMaskMask,
+    utilAjaxTag,
+    utilAjaxXdr,
+    utilAnimationEaseinout,
+    utilCacheCache,
+    utilCacheCookie,
+    utilChainNodeList,
+    utilChainChainable,
+    utilEditorCommand,
+    utilEditorCommandSimple,
+    utilEncodeJson,
+    utilEvent,
+    utilEventEvent,
+    utilFileSelect,
+    utilFlashFlash,
+    utilFormForm,
+    utilHistoryHistory,
+    utilLazyImage,
+    utilSuggestSuggest,
+    utilTabTab,
+    utilTemplateJst,
+    utilTemplateTpl,
+    utilTimerAnimation
+}
