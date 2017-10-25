@@ -1,17 +1,17 @@
 {
-    "name": "nej-es6",
+    "name": "nejm",
     "version": "0.1.0",
-    "description": "NEJ 是网易开源的一体化前端框架，而 NEJ-ES6 是 NEJ 的 ES6 版本",
+    "description": "NEJ 是网易开源的一体化前端框架，而 nejm 是 NEJ 的 ES6 版本",
     "main": "index.js",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/lleohao/NEJ-ES6.git"
+        "url": "git+https://github.com/lleohao/nejm.git"
     },
     "author": "lleohao <lleohao@hotmail.com>",
     "bugs": {
-        "url": "https://github.com/lleohao/NEJ-ES6/issues"
+        "url": "https://github.com/lleohao/nejm/issues"
     },
-    "homepage": "https://github.com/lleohao/NEJ-ES6#readme",
+    "homepage": "https://github.com/lleohao/nejm#readme",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "gulp",
