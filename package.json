@@ -1,6 +1,6 @@
 {
     "name": "nejm",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "方便在nej中使用es6",
     "main": "index.js",
     "repository": {
@@ -16,6 +16,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "gulp",
         "release": "npm run build && cd nej-es6 && npm publish",
+        "prepublish": "npm run build",
         "buildPlatform": "cross-env PLATFORM=true  gulp",
         "releasePlatform": "npm run buildPlatform && cd nej-es6-platform && npm publish"
     },
