@@ -1,4 +1,4 @@
-# NEJ-ES6
+# NEJM
 
 这个库是用 ES6 Module 的方式 NEJ, 目的是为了能够在编码的时候导入 NEJ 的模块
 
