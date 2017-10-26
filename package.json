@@ -1,7 +1,7 @@
 {
     "name": "nejm",
-    "version": "0.1.0",
-    "description": "NEJ 是网易开源的一体化前端框架，而 nejm 是 NEJ 的 ES6 Module 版本",
+    "version": "0.2.0",
+    "description": "方便在nej中使用es6",
     "main": "index.js",
     "repository": {
         "type": "git",
