@@ -32,11 +32,11 @@ function createNejm(lines) {
 
 
     const template = `
-        export const name2source = {
+        module.exports.name2source = {
             ${name2source.join(',')}
         };
 
-        export const source2name = {
+        module.exports.source2name = {
             ${source2name.join(',')}
         };
     `;
