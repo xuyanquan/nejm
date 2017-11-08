@@ -1,6 +1,6 @@
 {
     "name": "nejm",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "description": "方便在nej中使用es6",
     "main": "index.js",
     "repository": {
