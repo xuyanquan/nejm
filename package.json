@@ -1,17 +1,17 @@
 {
     "name": "nejm",
-    "version": "0.3.1",
+    "version": "0.3.2",
     "description": "方便在nej中使用es6",
     "main": "index.js",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/lleohao/nejm.git"
+        "url": "git+https://github.com/Mammut-FE/nejm.git"
     },
     "author": "lleohao <lleohao@hotmail.com>",
     "bugs": {
-        "url": "https://github.com/lleohao/nejm/issues"
+        "url": "https://github.com/Mammut-FE/nejm/issues"
     },
-    "homepage": "https://github.com/lleohao/nejm#readme",
+    "homepage": "https://github.com/Mammut-FE/nejm#readme",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "gulp",

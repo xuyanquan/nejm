@@ -1,11 +1,9 @@
-NEJ-CommonJS is released under the MIT license
+nejm is released under the MIT license
 
 Copyright 2012 (c) NetEase, Inc
 
 Uses 
-TrimPath  (http://code.google.com/p/trimpath/)
-json2.js  (http://www.JSON.org/json2.js)
-json_parse.js (https://github.com/douglascrockford/JSON-js)
+nejc  (https://github.com/kaola-fed/NejC)
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
