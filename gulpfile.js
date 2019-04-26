@@ -42,12 +42,12 @@ gulp.task('clean', function () {
         .pipe(clean());
 });
 
-gulp.task('build', ['clean'], function () {
+gulp.task('build', gulp.series('clean', function () {
     return gulp
         .src(config.src)
         .pipe(nejc(config))
         .pipe(gulp.dest(config.dist));
-});
+}));
 
 gulp.task('buildNEJM', function () {
     return gulp.src(path.join('template', 'NEJ.INDEX.js'))
@@ -65,32 +65,31 @@ gulp.task('buildNEJMMap', function () {
         .pipe(gulp.dest(dist));
 });
 
-gulp.task('AddNEJPATCH', ['build'],
-    function () {
-        var tpl = fs.readFileSync(path.join('template', 'NEJ.PATCH.js')).toString('utf-8');
-        return gulp
-            .src(platformJS)
-            .pipe(insert.append(tpl))
-            .pipe(gulp.dest(path.parse(platformJS).dir));
-    });
+gulp.task('AddNEJPATCH', gulp.series('build', function () {
+    var tpl = fs.readFileSync(path.join('template', 'NEJ.PATCH.js')).toString('utf-8');
+    return gulp
+        .src(platformJS)
+        .pipe(insert.append(tpl))
+        .pipe(gulp.dest(path.parse(platformJS).dir));
+}));
 
 
-gulp.task('COPYINDEXOTHERS', ['AddNEJPATCH', 'buildNEJM', 'buildNEJMMap'], function () {
+gulp.task('COPYINDEXOTHERS', gulp.series('AddNEJPATCH', 'buildNEJM', 'buildNEJMMap', function () {
     return gulp
         .src([
             './package.json',
             './README.MD'
         ])
         .pipe(gulp.dest(dist));
-});
+}));
 
-gulp.task('COPYINDEX', ['COPYINDEXOTHERS'], function () {
+gulp.task('COPYINDEX', gulp.series('COPYINDEXOTHERS', function () {
     return gulp
         .src([
             path.join('template', 'NEJ.INDEX.js')
         ])
         .pipe(rename('index.js'))
         .pipe(gulp.dest(dist));
-});
+}));
 
-gulp.task('default', ['COPYINDEX']);
+gulp.task('default', gulp.series('COPYINDEX'));
