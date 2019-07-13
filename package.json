@@ -1,37 +1,30 @@
 {
-    "name": "nejm",
-    "version": "0.3.4",
-    "description": "方便在nej中使用es6",
-    "main": "index.js",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Mammut-FE/nejm.git"
-    },
-    "author": "lleohao <lleohao@hotmail.com>",
-    "bugs": {
-        "url": "https://github.com/Mammut-FE/nejm/issues"
-    },
-    "homepage": "https://github.com/Mammut-FE/nejm#readme",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "gulp",
-        "release": "npm run build && cd nej-es6 && npm publish",
-        "prepublish": "npm run build",
-        "buildPlatform": "cross-env PLATFORM=true  gulp",
-        "releasePlatform": "npm run buildPlatform && cd nej-es6-platform && npm publish"
-    },
-    "devDependencies": {
-        "cross-env": "^5.2.0",
-        "gulp": "^4.0.1",
-        "gulp-beautify": "^3.0.0",
-        "gulp-clean": "^0.4.0",
-        "gulp-html-tpl": "^0.5.2",
-        "gulp-insert": "^0.5.0",
-        "gulp-jsbeautifier": "^3.0.0",
-        "gulp-rename": "^1.4.0",
-        "gulp-util": "^3.0.8",
-        "nejc": "^1.5.1",
-        "through2": "^3.0.1"
-    },
-    "license": "MIT"
+  "name": "nejm",
+  "version": "0.3.4",
+  "description": "方便在nej中使用es6",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mammut-FE/nejm.git"
+  },
+  "author": "lleohao <lleohao@hotmail.com>",
+  "bugs": {
+    "url": "https://github.com/Mammut-FE/nejm/issues"
+  },
+  "homepage": "https://github.com/Mammut-FE/nejm#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp",
+    "release": "npm run build && cd nej-es6 && npm publish",
+    "prepublish": "npm run build",
+    "buildPlatform": "cross-env PLATFORM=true  gulp",
+    "releasePlatform": "npm run buildPlatform && cd nej-es6-platform && npm publish"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "gulp": "^4.0.1",
+    "gulp-clean": "^0.4.0"
+  },
+  "license": "MIT"
 }
