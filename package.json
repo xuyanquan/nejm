@@ -15,20 +15,23 @@
   "homepage": "https://github.com/Mammut-FE/nejm#readme",
   "scripts": {
     "test": "jest",
-    "build": "gulp",
-    "prepublish": "npm run build"
+    "build": "gulp"
   },
   "devDependencies": {
-    "@types/babel-types": "^7.0.1",
-    "babel-core": "^6.26.0",
+    "@babel/core": "^7.5.4",
+    "@babel/types": "^7.5.0",
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.6.2",
     "cross-env": "^5.2.0",
     "gulp": "^4.0.1",
     "gulp-clean": "^0.4.0",
-    "typescript": "^2.6.1"
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.3"
   },
   "dependencies": {
-    "babel-helper-nej-transforms": "^1.1.0",
-    "babel-template": "^6.26.0"
+    "@babel/template": "^7.4.4",
+    "babel-helper-nej-transforms": "^1.1.0"
   },
   "license": "MIT"
 }
