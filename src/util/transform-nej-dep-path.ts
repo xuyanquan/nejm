@@ -16,7 +16,9 @@ export function transformNejDepPath(nejPath: string, filePath: string) {
         relativePath = relative(dirname(filePath), nejPath);
     } else if (nejPath.startsWith('{platform')) {
         // {platform}element.js
-        relativePath = nejPath.replace(/^{platform}/, './platform/');
+        relativePath = nejPath
+            .replace(/^{platform}/, './platform/')
+            .replace(/\.js$/, '');
     } else {
         // ./util.js
         relativePath = nejPath.replace(/\.js$/, '');
