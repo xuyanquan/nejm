@@ -5,6 +5,8 @@ node_modules
 NEJ-ES6
 
 dist
-lib
+base
+ui
+util
 
 package-lock.json

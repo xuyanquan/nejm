@@ -7,7 +7,7 @@ const tsc = require('gulp-typescript');
 const tsProject = tsc.createProject('./src/tsconfig.dev.json');
 
 gulp.task('clean', function () {
-    return gulp.src(['lib', 'dist'], {read: false, allowEmpty: true})
+    return gulp.src(['base', 'ui', 'util', 'dist'], {read: false, allowEmpty: true})
         .pipe(clean());
 });
 
@@ -20,7 +20,7 @@ gulp.task('build:lib', function () {
                 }]
             ]
         }))
-        .pipe(gulp.dest('lib'));
+        .pipe(gulp.dest('.'));
 });
 
 gulp.task('build:code', function () {
