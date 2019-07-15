@@ -13,11 +13,12 @@ export function transformThis2Window(fnBody: Statement[]) {
             statement.declarations.forEach(declaration => {
                 if (t.isThisExpression(declaration.init)) {
                     declaration.init = identifier('globalThis');
-                } else if (t.isMemberExpression(declaration.init)
+                }
+                else if (t.isMemberExpression(declaration.init)
                     && t.isMemberExpression((declaration.init as MemberExpression).object)
                     && t.isThisExpression((declaration.init.object as MemberExpression).object)
                 ) {
-                    declaration.init.object = identifier('globalThis');
+                    (declaration.init.object as MemberExpression).object = identifier('globalThis');
                 }
             });
         }

@@ -26,8 +26,8 @@ _pro.__reset = function(_options){
         expect(generator(ast).code).toEqual(`
 var globalThis = window;
 var self = globalThis;
-var _platform = globalThis.platform,
-    _useragent = globalThis.userAgent;
+var _platform = globalThis.navigator.platform,
+    _useragent = globalThis.navigator.userAgent;
 
 _pro.__reset = function (_options) {
   this.__super(_options);
