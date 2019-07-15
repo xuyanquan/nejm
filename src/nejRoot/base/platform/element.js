@@ -238,8 +238,8 @@ NEJ.define([
         return function(_matrix){
             var _mtrx;
             _u._$forIn(_klss,function(_name){
-                if (!!this[_name]){
-                    _mtrx = new this[_name](_matrix||'');
+                if (!!window[_name]){
+                    _mtrx = new window[_name](_matrix||'');
                     return !0;
                 }
             });
