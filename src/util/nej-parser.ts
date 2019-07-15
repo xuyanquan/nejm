@@ -4,6 +4,7 @@
  * @author lleohao<lleohao@hotmail.com>
  */
 import { NodePath, Visitor } from '@babel/traverse';
+import * as types from '@babel/types';
 import {
     ArrayExpression,
     CallExpression,
@@ -29,10 +30,16 @@ export function nejParser(path: NodePath): NejMeta {
     ];
 
     const visitor: Visitor = {
-        CallExpression: (path: { node: CallExpression }) => {
+        CallExpression: (path: NodePath<CallExpression>) => {
             const {node} = path;
 
-            if ((node.callee as Identifier).name === 'define') {
+            if (types.isIdentifier(node.callee) && node.callee.name === 'define'
+                || (
+                    types.isMemberExpression(node.callee)
+                    && (types.isIdentifier(node.callee.object) && node.callee.object.name === 'NEJ')
+                    && (types.isIdentifier(node.callee.property) && node.callee.property.name === 'define')
+                )
+            ) {
                 let [depArguments, funExpression] = node.arguments as [ArrayExpression, FunctionExpression];
 
                 const deps: string[] = depArguments.elements.map((argument: StringLiteral) => argument.value);

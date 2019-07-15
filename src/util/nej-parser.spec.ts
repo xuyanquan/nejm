@@ -25,7 +25,7 @@ describe('nejParser', () => {
     });
 
     it('解析非 nej 文件时, 返回 {fnBody: undefined, deps: [], nejInject: []}', async () => {
-        await expect(getResult(`111111`)).resolves.toEqual({fnBody: undefined, deps: [], nejInject: []});
+        await expect(getResult(`111111`)).resolves.toEqual({fnBody: undefined, dependence: [], nejInject: []});
     });
 
     it('正确解析主体函数', async () => {
@@ -46,6 +46,30 @@ describe('nejParser', () => {
     it('正确解析依赖', async () => {
         const code = `
             define(['base/util', './global.js', '{platform}element.js'], function(_util, _global, _element, _p, _o, _f, _r) {
+                var _p = {};
+                
+                return _p;
+            })
+        `;
+        const {dependence, nejInject} = await getResult(code);
+
+        expect(nejInject).toEqual([
+            {alias: '_p', type: NejInjectType.object},
+            {alias: '_o', type: NejInjectType.object},
+            {alias: '_f', type: NejInjectType.function},
+            {alias: '_r', type: NejInjectType.array}
+        ]);
+
+        expect(dependence).toEqual([
+            {dep: 'base/util', alias: '_util'},
+            {dep: './global.js', alias: '_global'},
+            {dep: '{platform}element.js', alias: '_element'}
+        ]);
+    });
+
+    it('支持 NEJ.define()', async () => {
+        const code = `
+            NEJ.define(['base/util', './global.js', '{platform}element.js'], function(_util, _global, _element, _p, _o, _f, _r) {
                 var _p = {};
                 
                 return _p;
