@@ -1,4 +1,4 @@
-#NEJ 源文件修改历史
+# NEJ 源文件修改历史
 
 1. `base/platform/element.js#241~242`
 
