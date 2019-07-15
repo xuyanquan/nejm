@@ -38,7 +38,7 @@ export default function () {
                     const FN_BODY = transformReturnToExport(transformThis2Window(fnBody), nejInject);
 
                     dependence.forEach(({dep, alias}) => {
-                        const specifiers = [types.importNamespaceSpecifier(types.identifier(alias))];
+                        const specifiers = [types.importDefaultSpecifier(types.identifier(alias))];
                         IMPORT_LIST.push(types.importDeclaration(specifiers, types.stringLiteral(transformNejDepPath(dep, fileName))));
                     });
 

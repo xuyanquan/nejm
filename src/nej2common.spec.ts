@@ -2,7 +2,7 @@ import { transform } from '@babel/core';
 import * as path from 'path';
 import nej2common from './nej2common';
 
-function expectCodeEqual(expected: string, received: string) {
+export function expectCodeEqual(expected: string, received: string) {
     expected = expected.trim().split('\n').map(line => line.trim()).filter(line => line.trim()).join('\n');
     received = received.trim().split('\n').map(line => line.trim()).filter(line => line.trim()).join('\n');
 
