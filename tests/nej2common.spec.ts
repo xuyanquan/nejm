@@ -20,7 +20,7 @@ describe('nej2common', () => {
     };
 
     it('从文件中读取, 转换正确', () => {
-        const result = transformFileSync(path.join(__dirname, '../src/nejRoot/base/element.js'), option);
-        expectCodeEqual(result.code, fs.readFileSync(path.join(__dirname, './element.js')).toString());
+        const result = transformFileSync(path.join(__dirname, '../src/nejRoot/base/global.js'), option);
+        expectCodeEqual(result.code, fs.readFileSync(path.join(__dirname, './global.js')).toString());
     });
 });

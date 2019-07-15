@@ -120,4 +120,54 @@ describe('nej2common', () => {
         });
     });
 
+    it('去掉 DEBUG 和 CMPT', () => {
+        const code = `
+        define([], function() {
+            if (1 === 1) {
+                if (1 === 1) {
+                    console.log('1 = 1');
+                }
+            }
+            
+            if (CMPT) {
+                NEJ = this.NEJ || {}; // copy object properties
+                return NEJ;
+            }
+            
+            if (DEBUG) {
+                NEJ = this.NEJ || {}; // copy object properties
+                return NEJ;
+            }
+            
+            function a() {
+                if (1 === 1) {
+                    if (1 === 1) {
+                        console.log('1 = 1');
+                    }
+                }
+            }
+        })
+        `;
+        const result = transform(code, option);
+        expectCodeEqual(result.code, `
+            var globalThis = window;
+            if (1 === 1) {
+                if (1 === 1) {
+                    console.log('1 = 1');
+                }
+            }
+            
+            if (CMPT) {}
+            
+            if (DEBUG) {}
+            
+            function a() {
+                if (1 === 1) {
+                    if (1 === 1) {
+                        console.log('1 = 1');
+                    }
+                }
+            }
+        `)
+    });
 });

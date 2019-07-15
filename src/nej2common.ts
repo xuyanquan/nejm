@@ -1,7 +1,7 @@
 import template from '@babel/template';
 import { NodePath } from '@babel/traverse';
 import * as types from '@babel/types';
-import { Program, Statement } from '@babel/types';
+import { IfStatement, Program, Statement } from '@babel/types';
 import * as path from 'path';
 import { transformNejDepPath } from './util';
 import { NejInjectType } from './util/interfaces/nej-inject.interface';
@@ -74,6 +74,13 @@ export default function () {
                         NEJ_INJECT_LIST,
                         FN_BODY
                     });
+                }
+            },
+            IfStatement: {
+                exit: (statement: NodePath<IfStatement>) => {
+                    if (types.isIdentifier(statement.node.test) && (statement.node.test.name === 'CMPT' || statement.node.test.name === 'DEBUG')) {
+                        statement.node.consequent = types.blockStatement([]);
+                    }
                 }
             }
         }
