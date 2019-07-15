@@ -42,6 +42,11 @@ export function nejParser(path: NodePath): NejMeta {
             ) {
                 let [depArguments, funExpression] = node.arguments as [ArrayExpression, FunctionExpression];
 
+                if (types.isFunctionExpression(depArguments)) {
+                    funExpression = depArguments;
+                    depArguments = types.arrayExpression([]);
+                }
+
                 const deps: string[] = depArguments.elements.map((argument: StringLiteral) => argument.value);
                 const depLength = deps.length;
 

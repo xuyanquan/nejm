@@ -1,7 +1,8 @@
 import template from '@babel/template';
 import { NodePath } from '@babel/traverse';
-import * as t from '@babel/types';
+import * as types from '@babel/types';
 import { Program, Statement } from '@babel/types';
+import * as path from 'path';
 import { transformNejDepPath } from './util';
 import { NejInjectType } from './util/interfaces/nej-inject.interface';
 import { nejParser } from './util/nej-parser';
@@ -13,41 +14,45 @@ const buildWrapper = template.statements(`
     FN_BODY
 `);
 
-export default function (babelConfig) {
+export default function () {
     return {
         visitor: {
             Program: {
-                exit: (program: NodePath<Program>, {opts}) => {
+                exit: (program: NodePath<Program>, options) => {
                     const {
                         fnBody, nejInject, dependence
                     } = nejParser(program);
-                    const {fileName} = opts;
+                    let {opts: {fileName, nejRoot}, filename} = options;
+
+                    if (filename && nejInject) {
+                        fileName = './' + path.relative(nejRoot, filename);
+                    }
 
                     const IMPORT_LIST = [];
                     const NEJ_INJECT_LIST = [];
                     const FN_BODY = transformThis2Window(fnBody);
 
                     dependence.forEach(({dep, alias}) => {
-                        const specifiers = [t.importNamespaceSpecifier(t.identifier(alias))];
-                        IMPORT_LIST.push(t.importDeclaration(specifiers, t.stringLiteral(transformNejDepPath(dep, fileName))));
+                        const specifiers = [types.importNamespaceSpecifier(types.identifier(alias))];
+                        IMPORT_LIST.push(types.importDeclaration(specifiers, types.stringLiteral(transformNejDepPath(dep, fileName))));
                     });
 
                     nejInject.forEach(({type, alias}) => {
                         let statement: Statement;
                         switch (type) {
                             case NejInjectType.array:
-                                statement = t.variableDeclaration('var', [
-                                    t.variableDeclarator(t.identifier(alias), t.arrayExpression())
+                                statement = types.variableDeclaration('var', [
+                                    types.variableDeclarator(types.identifier(alias), types.arrayExpression())
                                 ]);
                                 break;
                             case NejInjectType.function:
-                                statement = t.variableDeclaration('var', [
-                                    t.variableDeclarator(t.identifier(alias), t.functionExpression(null, [], t.blockStatement([])))
+                                statement = types.variableDeclaration('var', [
+                                    types.variableDeclarator(types.identifier(alias), types.functionExpression(null, [], types.blockStatement([])))
                                 ]);
                                 break;
                             case NejInjectType.object:
-                                statement = t.variableDeclaration('var', [
-                                    t.variableDeclarator(t.identifier(alias), t.objectExpression([]))
+                                statement = types.variableDeclaration('var', [
+                                    types.variableDeclarator(types.identifier(alias), types.objectExpression([]))
                                 ]);
                                 break;
                         }
