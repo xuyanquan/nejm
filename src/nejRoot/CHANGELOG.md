@@ -19,3 +19,23 @@ _u._$forIn(_klss,function(_name){
     }
 });
 ```
+
+2. `base/global.js#156~161`
+
+```javascript
+// old
+if (!this.console){
+    this.console = {
+        log:_f,
+        error:_f
+    };
+}
+
+// new
+if (!window.console){
+    window.console = {
+        log:_f,
+        error:_f
+    };
+}
+```

@@ -80,7 +80,7 @@ NEJ.define(function(_p,_o,_f,_r){
      *
      *  ```javascript
      *  var scope = {a:0};
-     * 
+     *
      *  var func = function(a,b){
      *      // 第一个参数 ：1
      *      console.log(a);
@@ -89,7 +89,7 @@ NEJ.define(function(_p,_o,_f,_r){
      *      // 当前this.a ： 0
      *      console.log(this.a);
      *  };
-     * 
+     *
      *  func._$bind(scope,"1")(2);
      *  ```
      *
@@ -116,7 +116,7 @@ NEJ.define(function(_p,_o,_f,_r){
      *
      *  ```javascript
      *  var scope = {a:0};
-     * 
+     *
      *  var func = function(a,b){
      *      // 第一个参数 ：2
      *      console.log(a);
@@ -125,7 +125,7 @@ NEJ.define(function(_p,_o,_f,_r){
      *      // 当前this.a ： 0
      *      console.log(this.a);
      *  };
-     * 
+     *
      *  func._$bind(scope,"1")(2);
      *  ```
      *
@@ -153,8 +153,8 @@ NEJ.define(function(_p,_o,_f,_r){
             };
          })();
     }
-    if (!this.console){
-        this.console = {
+    if (!window.console){
+        window.console = {
             log:_f,
             error:_f
         };
@@ -190,7 +190,7 @@ NEJ.define(function(_p,_o,_f,_r){
                 }
             }
         );
-        
+
         return NEJ;
     }
 
