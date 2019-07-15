@@ -45,12 +45,50 @@ describe('nej2common', () => {
             
             var globalThis = window;
             _p._$$ModuleSlothOperation = _k._$klass();
+            
+            export default _p;
         `);
     });
 
-    it('正确转换函数主体', () => {
-        const code = `
+    describe('转换函数主体', () => {
+        it('转换带有 return 语句的函数体', () => {
+            const code = `
             NEJ.define([], function() {
+                var _platform = this.navigator.platform,
+                    _useragent = this.navigator.userAgent;
+                var _pro = {};
+                _pro.__doBuild = function () {
+                    this.__body = _e._$html2node(
+                        _t0._$getTextTemplate('tpl-sloth-operation-view')
+                    );
+                    var _flag = _e._$getByClassName(this.__body, 'j-flag');
+                    this.__export = {
+                        parent: _flag[0]
+                    };
+                };
+                return _pro;       
+            })
+        `;
+            const result = transform(code, option);
+            expectCodeEqual(result.code, `
+            var globalThis = window;
+            var _platform = globalThis.navigator.platform,
+                _useragent = globalThis.navigator.userAgent;
+            var _pro = {};
+            _pro.__doBuild = function () {
+                this.__body = _e._$html2node(_t0._$getTextTemplate('tpl-sloth-operation-view'));
+                var _flag = _e._$getByClassName(this.__body, 'j-flag');
+                this.__export = {
+                    parent: _flag[0]
+                };
+            };
+            export default _pro;
+        `);
+        });
+
+        it('转换带有注入变量且没有 return 语句的函数体', () => {
+            const code = `
+            NEJ.define([], function(_p) {
                 var _platform = this.navigator.platform,
                     _useragent = this.navigator.userAgent;
                 _pro.__doBuild = function () {
@@ -61,11 +99,12 @@ describe('nej2common', () => {
                     this.__export = {
                         parent: _flag[0]
                     };
-                };        
+                };
             })
         `;
-        const result = transform(code, option);
-        expectCodeEqual(result.code, `
+            const result = transform(code, option);
+            expectCodeEqual(result.code, `
+            var _p = {};
             var globalThis = window;
             var _platform = globalThis.navigator.platform,
                 _useragent = globalThis.navigator.userAgent;
@@ -75,7 +114,10 @@ describe('nej2common', () => {
                 this.__export = {
                     parent: _flag[0]
                 };
-            };      
+            };
+            export default _p;
         `);
+        });
     });
+
 });

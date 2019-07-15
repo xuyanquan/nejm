@@ -6,6 +6,7 @@ import * as path from 'path';
 import { transformNejDepPath } from './util';
 import { NejInjectType } from './util/interfaces/nej-inject.interface';
 import { nejParser } from './util/nej-parser';
+import { transformReturnToExport } from './util/transform-return-to-export';
 import { transformThis2Window } from './util/transform-this-to-window';
 
 const buildWrapper = template.statements(`
@@ -24,13 +25,17 @@ export default function () {
                     } = nejParser(program);
                     let {opts: {fileName, nejRoot}, filename} = options;
 
+                    if (fnBody === undefined) {
+                        return;
+                    }
+
                     if (filename && nejInject) {
                         fileName = './' + path.relative(nejRoot, filename);
                     }
 
                     const IMPORT_LIST = [];
                     const NEJ_INJECT_LIST = [];
-                    const FN_BODY = transformThis2Window(fnBody);
+                    const FN_BODY = transformReturnToExport(transformThis2Window(fnBody), nejInject);
 
                     dependence.forEach(({dep, alias}) => {
                         const specifiers = [types.importNamespaceSpecifier(types.identifier(alias))];
@@ -55,11 +60,14 @@ export default function () {
                                     types.variableDeclarator(types.identifier(alias), types.objectExpression([]))
                                 ]);
                                 break;
+                            default:
+                                statement = types.variableDeclaration('var', [
+                                    types.variableDeclarator(types.identifier(alias))
+                                ]);
                         }
 
                         NEJ_INJECT_LIST.push(statement);
                     });
-
 
                     program.node.body = buildWrapper({
                         IMPORT_LIST,

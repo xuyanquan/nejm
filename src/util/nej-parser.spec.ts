@@ -6,26 +6,27 @@ import { NejMeta } from './interfaces/nej-meta.interface';
 
 import { nejParser } from './nej-parser';
 
+export function getNejParseResult(code): Promise<NejMeta> {
+    return new Promise(resolve => {
+        const ast = parser.parse(code);
+
+        traverse(ast, {
+            enter: (path) => {
+                resolve(nejParser(path));
+            }
+        });
+    });
+}
 
 describe('nejParser', () => {
-    function getResult(code): Promise<NejMeta> {
-        return new Promise(resolve => {
-            const ast = parser.parse(code);
 
-            traverse(ast, {
-                enter: (path) => {
-                    resolve(nejParser(path));
-                }
-            });
-        });
-    }
 
     it('nejParser is function', () => {
         expect(nejParser).toBeInstanceOf(Function);
     });
 
-    it('解析非 nej 文件时, 返回 {fnBody: undefined, deps: [], nejInject: []}', async () => {
-        await expect(getResult(`111111`)).resolves.toEqual({fnBody: undefined, dependence: [], nejInject: []});
+    it('解析非 js 文件时, 返回 {fnBody: undefined, dependence: [], nejInject: []}', async () => {
+        await expect(getNejParseResult(`111111`)).resolves.toEqual({fnBody: undefined, dependence: [], nejInject: []});
     });
 
     it('正确解析主体函数', async () => {
@@ -36,7 +37,7 @@ describe('nejParser', () => {
                 return _p;
             })
         `;
-        const {fnBody} = await getResult(code);
+        const {fnBody} = await getNejParseResult(code);
 
         expect(fnBody.length).toEqual(2);
         expect(fnBody[0].type).toEqual('VariableDeclaration');
@@ -51,7 +52,7 @@ describe('nejParser', () => {
                 return _p;
             })
         `;
-        const {dependence, nejInject} = await getResult(code);
+        const {dependence, nejInject} = await getNejParseResult(code);
 
         expect(nejInject).toEqual([
             {alias: '_p', type: NejInjectType.object},
@@ -75,7 +76,7 @@ describe('nejParser', () => {
                 return _p;
             })
         `;
-        const {dependence, nejInject} = await getResult(code);
+        const {dependence, nejInject} = await getNejParseResult(code);
 
         expect(nejInject).toEqual([
             {alias: '_p', type: NejInjectType.object},
