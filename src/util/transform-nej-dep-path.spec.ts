@@ -33,6 +33,8 @@ describe('resolveNejPath', () => {
         it('子目录', () => {
             expect(transformNejDepPath('./base/util.js', './base/platform/element.js')).toEqual('./base/util');
             expect(transformNejDepPath('./base/platform.js', './base/platform/platform.js')).toEqual('./base/platform');
+
+            expect(transformNejDepPath('../proxy/xhr.js', './util/ajax/platform/xhr.js')).toEqual('../proxy/xhr');
         });
 
 

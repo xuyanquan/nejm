@@ -1,4 +1,4 @@
-import { dirname, relative } from 'path';
+import { dirname, isAbsolute, relative } from 'path';
 
 /**
  * 转换 nej 中的依赖关系为相对路径的文件引用
@@ -8,7 +8,7 @@ import { dirname, relative } from 'path';
  */
 export function transformNejDepPath(nejPath: string, filePath: string) {
 
-    if (nejPath.startsWith('./') && nejPath.endsWith('.js')) {
+    if (nejPath.startsWith('.') && nejPath.endsWith('.js')) {
         return nejPath.replace(/\.js$/, '');
     }
 
