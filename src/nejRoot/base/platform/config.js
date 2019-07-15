@@ -97,7 +97,7 @@ NEJ.define([
             _p.__set('flashs',_doInitProxy(_config.p_flash));
         };
     })();
-    _doInit(this.NEJ_CONF||_o);
+    _doInit(window.NEJ_CONF||_o);
 
     return _p;
 });
