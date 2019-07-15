@@ -5,14 +5,13 @@
 
 ## 安装
 
+`npm i nejm --save`
 
 ## 使用
 
 ```javascript
-import {
-    element,
-    utilAjaxXdr
-} from './nej-es6';
+import * as element from 'nejm/base/element';
+import * as utilAjaxXdr from 'nejm/util/ajax/xhr';
 
 utilAjaxXdr._$request({
     method: 'post',
