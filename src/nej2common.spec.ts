@@ -34,9 +34,9 @@ describe('nej2common', () => {
         `;
         const result = transform(code, option);
         expectCodeEqual(result.code, `
-            import * as _global from "./global";
-            import * as _util from "./util";
-            import * as _element from "./platform/element";
+            import _global from "./global";
+            import _util from "./util";
+            import _element from "./platform/element";
             
             var _p = {};
             var _o = {};

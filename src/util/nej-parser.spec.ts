@@ -19,8 +19,6 @@ export function getNejParseResult(code): Promise<NejMeta> {
 }
 
 describe('nejParser', () => {
-
-
     it('nejParser is function', () => {
         expect(nejParser).toBeInstanceOf(Function);
     });

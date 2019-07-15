@@ -126,8 +126,8 @@ if (!_extpro.trim) {
         };
     }();
 }
-if (!globalThis.console) {
-    globalThis.console = {
+if (!this.console) {
+    this.console = {
         log: _f,
         error: _f
     };
