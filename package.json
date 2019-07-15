@@ -2,8 +2,6 @@
   "name": "nejm",
   "version": "0.3.4",
   "description": "方便在nej中使用es6",
-  "main": "dist/index.js",
-  "module": "dist/esm/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Mammut-FE/nejm.git"
@@ -15,7 +13,9 @@
   "homepage": "https://github.com/Mammut-FE/nejm#readme",
   "scripts": {
     "test": "jest",
-    "build": "gulp"
+    "build:source": "rm -rf dist & tsc -p src/tsconfig.dev.json",
+    "build": "gulp",
+    "preinstall": "npm run build:source"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
@@ -24,6 +24,7 @@
     "@types/node": "^12.6.2",
     "cross-env": "^5.2.0",
     "gulp": "^4.0.1",
+    "gulp-babel": "^8.0.0",
     "gulp-clean": "^0.4.0",
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
