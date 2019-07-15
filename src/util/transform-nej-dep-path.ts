@@ -7,22 +7,23 @@ import { dirname, relative } from 'path';
  * @param {string} filePath
  */
 export function transformNejDepPath(nejPath: string, filePath: string) {
-    let relativePath: string = nejPath;
 
+    if (nejPath.startsWith('./') && nejPath.endsWith('.js')) {
+        return nejPath.replace(/\.js$/, '');
+    }
+
+    if (nejPath.startsWith('{platform')) {
+        // {platform}element.js
+        return nejPath.replace(/^{platform}/, './platform/').replace(/\.js$/, '');
+    }
+
+    let relativePath;
     if (!nejPath.endsWith('.js')) {
         // base/util
-        nejPath = './' + nejPath;
-
-        relativePath = relative(dirname(filePath), nejPath);
-    } else if (nejPath.startsWith('{platform')) {
-        // {platform}element.js
-        relativePath = nejPath
-            .replace(/^{platform}/, './platform/')
-            .replace(/\.js$/, '');
-    } else {
-        // ./util.js
-        relativePath = nejPath.replace(/\.js$/, '');
+        nejPath = `./${nejPath}.js`;
     }
+
+    relativePath = relative(dirname(filePath), nejPath);
 
     if (!relativePath.startsWith('.')) {
         // relative 同级目录会省略前面的 './', eg: ./util => util
@@ -30,5 +31,5 @@ export function transformNejDepPath(nejPath: string, filePath: string) {
         relativePath = './' + relativePath;
     }
 
-    return relativePath;
+    return relativePath.replace(/\.js$/, '');
 }
