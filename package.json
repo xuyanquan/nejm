@@ -33,7 +33,8 @@
   "dependencies": {
     "@babel/template": "^7.4.4",
     "@babel/traverse": "^7.5.0",
-    "@babel/types": "^7.5.0"
+    "@babel/types": "^7.5.0",
+    "gulp-typescript": "^5.0.1"
   },
   "license": "MIT"
 }

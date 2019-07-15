@@ -2,13 +2,16 @@ const path = require('path');
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const clean = require('gulp-clean');
+const tsc = require('gulp-typescript');
+
+const tsProject = tsc.createProject('./src/tsconfig.dev.json');
 
 gulp.task('clean', function () {
-    return gulp.src('lib', {read: false, allowEmpty: true})
+    return gulp.src(['lib', 'dist'], {read: false, allowEmpty: true})
         .pipe(clean());
 });
 
-gulp.task('build', function () {
+gulp.task('build:lib', function () {
     return gulp.src('src/nejRoot/**/*.js')
         .pipe(babel({
             plugins: [
@@ -20,4 +23,10 @@ gulp.task('build', function () {
         .pipe(gulp.dest('lib'));
 });
 
-gulp.task('default', gulp.series(['clean', 'build']));
+gulp.task('build:code', function () {
+    return gulp.src('src/**/*.ts')
+        .pipe(tsProject())
+        .pipe(gulp.dest('dist'));
+});
+
+gulp.task('default', gulp.series(['clean', 'build:code', 'build:lib']));

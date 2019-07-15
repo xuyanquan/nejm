@@ -6,3 +6,5 @@ NEJ-ES6
 
 dist
 lib
+
+package-lock.json
