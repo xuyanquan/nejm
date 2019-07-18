@@ -13,9 +13,8 @@
   "homepage": "https://github.com/Mammut-FE/nejm#readme",
   "scripts": {
     "test": "jest",
-    "build:source": "rm -rf dist & tsc -p src/tsconfig.dev.json",
     "build": "gulp",
-    "preinstall": "npm run build:source"
+    "prepublish": "npm run build"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
