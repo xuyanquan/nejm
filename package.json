@@ -1,6 +1,6 @@
 {
   "name": "nejm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "方便在nej中使用es6",
   "files": [
     "util",
