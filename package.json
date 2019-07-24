@@ -2,6 +2,11 @@
   "name": "nejm",
   "version": "1.0.0",
   "description": "方便在nej中使用es6",
+  "files": [
+    "util",
+    "base",
+    "ui"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Mammut-FE/nejm.git"
