@@ -126,11 +126,11 @@ if (!_extpro.trim) {
         };
     }();
 }
-if (!this.console) {
-    this.console = {
+if (!window.console) {
+    window.console = {
         log: _f,
         error: _f
     };
 }
 if (CMPT) {}
-export default _p;
+module.exports = _p;
