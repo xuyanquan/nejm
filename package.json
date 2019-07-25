@@ -22,12 +22,13 @@
     "prepublish": "npm run build"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.4",
-    "@babel/generator": "^7.5.0",
+    "@babel/core": "^7.5.5",
+    "@babel/generator": "^7.5.5",
     "@types/jest": "^24.0.15",
-    "@types/node": "^12.6.2",
+    "@types/node": "^12.6.8",
+    "babel-helper-nej-transforms": "^2.2.0",
     "cross-env": "^5.2.0",
-    "gulp": "^4.0.1",
+    "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-clean": "^0.4.0",
     "jest": "^24.8.0",
@@ -36,8 +37,8 @@
   },
   "dependencies": {
     "@babel/template": "^7.4.4",
-    "@babel/traverse": "^7.5.0",
-    "@babel/types": "^7.5.0",
+    "@babel/traverse": "^7.5.5",
+    "@babel/types": "^7.5.5",
     "gulp-typescript": "^5.0.1"
   },
   "license": "MIT"
