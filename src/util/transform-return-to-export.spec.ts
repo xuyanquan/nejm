@@ -1,5 +1,4 @@
-import * as types from '@babel/types';
-import { ExportDefaultDeclaration, Identifier } from '@babel/types';
+import { expectCodeEqual, generatorCode } from 'babel-helper-nej-transforms/lib/test.util';
 import { getNejParseResult } from './nej-parser.spec';
 import { transformReturnToExport } from './transform-return-to-export';
 
@@ -17,11 +16,11 @@ describe('transformReturnToExport', () => {
         `;
         let {fnBody, nejInject} = await getNejParseResult(code);
         fnBody = transformReturnToExport(fnBody, nejInject);
-        let lastStatement = fnBody[fnBody.length - 1];
 
-        expect(types.isExportDefaultDeclaration(lastStatement));
-        expect(types.isIdentifier((lastStatement as ExportDefaultDeclaration).declaration));
-        expect(((lastStatement as ExportDefaultDeclaration).declaration as Identifier).name).toEqual('a');
+        expectCodeEqual(generatorCode(fnBody), `
+            var a = '1';
+            module.exports = a;
+        `);
     });
 
     it('不存在 return 语句时, 导出nej注入的命名空间 _p', async () => {
@@ -32,10 +31,10 @@ describe('transformReturnToExport', () => {
         `;
         let {fnBody, nejInject} = await getNejParseResult(code);
         fnBody = transformReturnToExport(fnBody, nejInject);
-        let lastStatement = fnBody[fnBody.length - 1];
 
-        expect(types.isExportDefaultDeclaration(lastStatement));
-        expect(types.isIdentifier((lastStatement as ExportDefaultDeclaration).declaration));
-        expect(((lastStatement as ExportDefaultDeclaration).declaration as Identifier).name).toEqual('_p');
+        expectCodeEqual(generatorCode(fnBody), `
+            var a = '1';
+            module.exports = _p;
+        `);
     });
 });

@@ -34,9 +34,9 @@ describe('nej2common', () => {
         `;
         const result = transform(code, option);
         expectCodeEqual(result.code, `
-            import _global from "./global";
-            import _util from "./util";
-            import _element from "./platform/element";
+            const _global = require("./global");
+            const _util = require("./util");
+            const _element = require("./platform/element");
             
             var _p = {};
             var _o = {};
@@ -46,7 +46,7 @@ describe('nej2common', () => {
             var globalThis = window;
             _p._$$ModuleSlothOperation = _k._$klass();
             
-            export default _p;
+            module.exports = _p;
         `);
     });
 
@@ -82,7 +82,7 @@ describe('nej2common', () => {
                     parent: _flag[0]
                 };
             };
-            export default _pro;
+            module.exports = _pro;
         `);
         });
 
@@ -115,7 +115,7 @@ describe('nej2common', () => {
                     parent: _flag[0]
                 };
             };
-            export default _p;
+            module.exports = _p;
         `);
         });
     });

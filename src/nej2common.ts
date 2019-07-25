@@ -38,8 +38,12 @@ export default function () {
                     const FN_BODY = transformReturnToExport(transformThis2Window(fnBody), nejInject);
 
                     dependence.forEach(({dep, alias}) => {
-                        const specifiers = [types.importDefaultSpecifier(types.identifier(alias))];
-                        IMPORT_LIST.push(types.importDeclaration(specifiers, types.stringLiteral(transformNejDepPath(dep, fileName))));
+                        IMPORT_LIST.push(types.variableDeclaration('const', [
+                            types.variableDeclarator(
+                                types.identifier(alias),
+                                types.callExpression(types.identifier('require'), [types.stringLiteral(transformNejDepPath(dep, fileName))])
+                            )
+                        ]))
                     });
 
                     nejInject.forEach(({type, alias}) => {
