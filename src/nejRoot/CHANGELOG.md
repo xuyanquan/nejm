@@ -67,5 +67,23 @@
         '../proxy/upload.js'
     ],function(_t0,_t2,_t3,_p,_o,_f,_r){
     ```
+    
+    ```javascript
+    // old
+    _p.__getProxyByMode = function(_mode,_upload,_options){
+        var _map = !!_upload
+                 ? {2:_t3._$$ProxyUpload}
+                 : {2:_t2._$$ProxyFrame,3:_t1._$$ProxyFlash};
+        return (_map[_mode]||_t0._$$ProxyXHR)._$allocate(_options);
+    };
+
+    // new
+    _p.__getProxyByMode = function(_mode,_upload,_options){
+         var _map = !!_upload
+                  ? {2:_t3._$$ProxyUpload}
+                  : {2:_t2._$$ProxyFrame};
+         return (_map[_mode]||_t0._$$ProxyXHR)._$allocate(_options);
+     };
+    ```
 
 5. `util/query/query.js#37~38`, `util/chain/NodeList.js` 去掉 nes
