@@ -33,9 +33,8 @@
  */
 /** @module util/query/query */
 NEJ.define([
-    'base/global',
-    './nes.js'
-],function(NEJ,_t0,_p,_o,_f,_r){
+    'base/global'
+],function(NEJ,_p,_o,_f,_r){
     /**
      * 节点选择器
      *
@@ -117,7 +116,7 @@ NEJ.define([
         }
     };
     // for test only
-    _p._$g = nes._get;
+    // _p._$g = nes._get;
 
     if (CMPT){
         NEJ.copy(NEJ.P('nej.e'),_p);
