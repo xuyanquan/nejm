@@ -24,7 +24,7 @@ NEJ.define([
     _p.__getProxyByMode = function(_mode,_upload,_options){
         var _map = !!_upload
                  ? {2:_t3._$$ProxyUpload}
-                 : {2:_t2._$$ProxyFrame,3:_t1._$$ProxyFlash};
+                 : {2:_t2._$$ProxyFrame};
         return (_map[_mode]||_t0._$$ProxyXHR)._$allocate(_options);
     };
 

@@ -11,6 +11,7 @@ NEJ.define([
     'base/chain',
     'util/query/query'
 ],function(_v,_e,_u,_x,_t){
+    var nes = {};
     var fragmentRE = /^\s*<(\w+|!)[^>]*>/,
         // local vals
         _slice = [].slice,

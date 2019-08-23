@@ -1344,14 +1344,10 @@ NEJ.define([
         });
         return _length>0;
     };
-    
-    if (CMPT){
-        NEJ.Q  = _p._$query;
-        NEJ.X  = _p._$merge;
-        NEJ.EX = _p._$fetch;
-        NEJ.copy(this.NEJ,NEJ);
-        NEJ.copy(NEJ.P('nej.u'),_p);
-    }
+
+    NEJ.Q  = _p._$query;
+    NEJ.X  = _p._$merge;
+    NEJ.EX = _p._$fetch;
 
     return _p;
 });

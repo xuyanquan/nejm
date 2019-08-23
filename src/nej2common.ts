@@ -2,16 +2,19 @@ import template from '@babel/template';
 import { NodePath } from '@babel/traverse';
 import * as types from '@babel/types';
 import { IfStatement, Program, Statement } from '@babel/types';
+import {
+    generatorNejDependencies,
+    nejCodeParser,
+    generatorNejInjects,
+    transformReturnToExport,
+    transformThis2Window, generatorNejDependenciesAsCommonjs, transformReturnToModuleExports, NejInjectType
+} from 'babel-helper-nej-transforms';
 import * as path from 'path';
 import { transformNejDepPath } from './util';
-import { NejInjectType } from './util/interfaces/nej-inject.interface';
-import { nejParser } from './util/nej-parser';
-import { transformReturnToExport } from './util/transform-return-to-export';
-import { transformThis2Window } from './util/transform-this-to-window';
 
 const buildWrapper = template.statements(`
     IMPORT_LIST
-    NEJ_INJECT_LIST
+    NEJ_INJECT
     FN_BODY
 `);
 
@@ -20,30 +23,34 @@ export default function () {
         visitor: {
             Program: {
                 exit: (program: NodePath<Program>, options) => {
-                    const {
-                        fnBody, nejInject, dependence
-                    } = nejParser(program);
-                    let {opts: {fileName, nejRoot}, filename} = options;
+                    options.isNejCode = true;
 
-                    if (fnBody === undefined) {
+                    let {
+                        fnBody, dependencies, nejInject
+                    } = nejCodeParser(program, options);
+
+                    if (!fnBody) {
                         return;
                     }
 
+                    let {opts: {fileName, nejRoot}, filename} = options;
                     if (filename && nejInject) {
                         fileName = './' + path.relative(nejRoot, filename);
                     }
 
-                    const IMPORT_LIST = [];
-                    const NEJ_INJECT_LIST = [];
-                    const FN_BODY = transformReturnToExport(transformThis2Window(fnBody), nejInject);
+                    if (!nejInject) {
+                        console.log(filename);
+                    }
 
-                    dependence.forEach(({dep, alias}) => {
-                        const specifiers = [types.importDefaultSpecifier(types.identifier(alias))];
-                        IMPORT_LIST.push(types.importDeclaration(specifiers, types.stringLiteral(transformNejDepPath(dep, fileName))));
+                    dependencies.forEach(dep => {
+                        dep.source = transformNejDepPath(dep.rawSource, fileName);
                     });
 
-                    nejInject.forEach(({type, alias}) => {
+                    const IMPORT_LIST = generatorNejDependenciesAsCommonjs(dependencies);
+
+                    const NEJ_INJECT = nejInject.map((inject, index) => {
                         let statement: Statement;
+                        const {type, alias} = inject;
                         switch (type) {
                             case NejInjectType.array:
                                 statement = types.variableDeclaration('var', [
@@ -56,9 +63,16 @@ export default function () {
                                 ]);
                                 break;
                             case NejInjectType.object:
-                                statement = types.variableDeclaration('var', [
-                                    types.variableDeclarator(types.identifier(alias), types.objectExpression([]))
-                                ]);
+                                if (index === 0) { // 第一个注入变量通常导出
+                                    statement = types.variableDeclaration('var', [
+                                        types.variableDeclarator(types.identifier(alias), types.identifier('exports'))
+                                    ]);
+                                } else {
+                                    statement = types.variableDeclaration('var', [
+                                        types.variableDeclarator(types.identifier(alias), types.objectExpression([]))
+                                    ]);
+                                }
+
                                 break;
                             default:
                                 statement = types.variableDeclaration('var', [
@@ -66,12 +80,18 @@ export default function () {
                                 ]);
                         }
 
-                        NEJ_INJECT_LIST.push(statement);
+                        return statement;
                     });
+
+                    if (types.isReturnStatement(fnBody[fnBody.length - 1])) {
+                        fnBody = fnBody.slice(0, fnBody.length - 1);
+                    }
+
+                    const FN_BODY = transformThis2Window(fnBody);
 
                     program.node.body = buildWrapper({
                         IMPORT_LIST,
-                        NEJ_INJECT_LIST,
+                        NEJ_INJECT,
                         FN_BODY
                     });
                 }

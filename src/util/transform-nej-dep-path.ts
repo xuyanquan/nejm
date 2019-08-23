@@ -7,7 +7,6 @@ import { dirname, isAbsolute, relative } from 'path';
  * @param {string} filePath
  */
 export function transformNejDepPath(nejPath: string, filePath: string) {
-
     if (nejPath.startsWith('.') && nejPath.endsWith('.js')) {
         return nejPath.replace(/\.js$/, '');
     }
