@@ -19,7 +19,7 @@ NEJ.define([
 ],function(NEJ,_k,_e,_v,_u,_t,_t2,_t0,_t1,_p,_o,_f,_r,_pro){
     /**
      * WEB表单验证封装对象，HTML代码中支持以下属性配置：
-     * 
+     *
      * | 名称 | 类型 | 说明 |
      * | :--- | :--- | :--- |
      * | data-focus-mode | 0/1                   | 聚焦模式，仅在form节点上设置，见_$focus |
@@ -95,12 +95,12 @@ NEJ.define([
      *             'pass':'<span class="pass">ok</span>'
      *         }
      *     });
-     *    
+     *
      *     // 验证表单后提交
      *     if (_form._$checkValidity()){
      *         _form._$submit();
      *     }
-     *    
+     *
      *     // 或者在验证完表单的配置项后再做表单的其他项验证
      *     if (_form._$checkValidity()){
      *         // TODO other form check
@@ -112,7 +112,7 @@ NEJ.define([
      *         // 使用ajax请求的话可以通过_form._$data()获取表单信息
      *         doAjaxRequest('/api/form',_form._$data());
      *     }
-     *    
+     *
      *     // 通过回调自定义提示信息示例代码：
      *     var _form = _t._$$WebForm._$allocate({
      *         form:'webForm',
@@ -129,7 +129,7 @@ NEJ.define([
      *             _event.value = '<span class="pass">pass</span>'
      *         }
      *     });
-     *     
+     *
      *     // 通过回调自定义验证规则示例代码：
      *     var _form = _t._$$WebForm._$allocate({
      *         form:'webForm',
@@ -138,7 +138,7 @@ NEJ.define([
      *             if (_event.target.name=='password'){
      *                 // 通过_event.value返回验证结果
      *                 // 验证结果必须大于0的值（保留所有小于0的返回值）
-     *                 // 也可以返回对象，_event.value = {a:'aaaa',b:'bbbb'}; 
+     *                 // 也可以返回对象，_event.value = {a:'aaaa',b:'bbbb'};
      *                 // 这里的a，b可以在oninvalid时输入的_event中取到
      *                 _event.value = doCheckPassword(_event.target.value); // 100
      *             }
@@ -180,7 +180,7 @@ NEJ.define([
      */
     /**
      * 对于无法通过配置验证的控件会回调外界辅助验证
-     * 
+     *
      * @event    module:util/form/form._$$WebForm#oncheck
      * @param    {Object} event  - 验证基本信息
      * @property {Node}   target - 当前验证节点
@@ -189,7 +189,7 @@ NEJ.define([
      */
     /**
      * 验证未通过触发事件，错误类型对照表
-     * 
+     *
      * | 错误码 | 说明 |
      * | :---   | :--- |
      * | -1     | 必填项未填值 |
@@ -199,7 +199,7 @@ NEJ.define([
      * | -5     | 未达到最小长度 |
      * | -6     | 未达到给定范围的最小值 |
      * | -7     | 超出给定范围的最大值 |
-     * 
+     *
      * @event    module:util/form/form._$$WebForm#oninvalid
      * @param    {Object} event  - 验证基本信息
      * @property {Node}   target - 当前验证节点
@@ -207,14 +207,14 @@ NEJ.define([
      */
     /**
      * 通过验证提示信息
-     * 
+     *
      * @event    module:util/form/form._$$WebForm#onvalid
      * @param    {Object} event  - 验证基本信息
      * @property {Node}   target - 当前验证节点
      */
     /**
      * 回车触发事件
-     * 
+     *
      * @event   module:util/form/form._$$WebForm#onenter
      * @param   {Event} event 事件信息
      */
@@ -222,7 +222,7 @@ NEJ.define([
     _pro = _p._$$WebForm._$extend(_t._$$EventTarget);
     /**
      * 控件初始化
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__init
      * @return {Void}
@@ -237,7 +237,7 @@ NEJ.define([
     };
     /**
      * 控件重置
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__reset
      * @param  {Object} arg0 - 配置参数
@@ -279,7 +279,7 @@ NEJ.define([
     };
     /**
      * 控件销毁
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__destroy
      * @return {Void}
@@ -297,7 +297,7 @@ NEJ.define([
     };
     /**
      * 取节点自定义数据值
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__dataset
      * @param  {String} arg0 - 自定义属性名
@@ -315,7 +315,7 @@ NEJ.define([
     };
     /**
      * 根据类型转数值
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__number
      * @param  {String} arg0 - 值
@@ -330,7 +330,7 @@ NEJ.define([
     };
     /**
      * 判断节点是否需要验证
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__isValidElement
      * @param  {Node}    arg0 - 节点
@@ -349,7 +349,7 @@ NEJ.define([
     })();
     /**
      * 判断节点是否需要验证
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__isValidElement
      * @param  {Node}    arg0 - 节点
@@ -367,7 +367,7 @@ NEJ.define([
     })();
     /**
      * 解析日期值
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__doParseDate
      * @param  {String} arg0 - 日期字符串
@@ -394,7 +394,7 @@ NEJ.define([
     })();
     /**
      * 解析字符类型规则属性
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__doCheckString
      * @param  {String} arg0 - 规则标识
@@ -410,7 +410,7 @@ NEJ.define([
     };
     /**
      * 解析正则类型规则属性
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__doCheckPattern
      * @param  {String} arg0 - 规则标识
@@ -430,7 +430,7 @@ NEJ.define([
     };
     /**
      * 解析布尔类型规则属性
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__doCheckBoolean
      * @param  {String} arg0 - 规则标识
@@ -445,7 +445,7 @@ NEJ.define([
     };
     /**
      * 解析数值类型规则属性
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__doCheckNumber
      * @param  {String} arg0 - 规则标识
@@ -461,7 +461,7 @@ NEJ.define([
     };
     /**
      * 解析dataset中数值类型规则属性
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__doCheckDSNumber
      * @param  {String} arg0 - 规则标识
@@ -473,7 +473,7 @@ NEJ.define([
     };
     /**
      * 解析属性中数值类型规则属性
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__doCheckATNumber
      * @param  {String} arg0 - 规则标识
@@ -485,7 +485,7 @@ NEJ.define([
     };
     /**
      * 解析dataset中数值类型规则属性
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__doCheckTPNumber
      * @param  {String} arg0 - 规则标识
@@ -500,7 +500,7 @@ NEJ.define([
     };
     /**
      * 验证扩展属性
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__doCheckCustomAttr
      * @param  {String} arg0 - 规则标识
@@ -519,7 +519,7 @@ NEJ.define([
     };
     /**
      * 准备表单元素验证信息
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__doPrepareElement
      * @param  {Node} arg0 - 表单元素节点
@@ -605,7 +605,7 @@ NEJ.define([
     })();
     /**
      * 初始化验证规则
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__doInitValidRule
      * @param  {Object} arg0 - 配置信息
@@ -651,7 +651,7 @@ NEJ.define([
             },
             // maxlength check
             maxlength:function(_node,_options){
-                if (_node.value.length>_options.maxlength)
+                if (_u._$length(_node.value) > _options.maxlength)
                     return -4;
             },
             // minlength check
@@ -661,7 +661,7 @@ NEJ.define([
             },
             // data-max-length check
             maxLength:function(_node,_options){
-                if (_u._$length(_node.value)>_options.maxLength)
+                if (_node.value.length > _options.maxLength)
                     return -4;
             },
             // data-min-length check
@@ -718,7 +718,7 @@ NEJ.define([
     })();
     /**
      * 添加验证规则
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__doPushValidRule
      * @param  {String}   arg0 - 规则标识
@@ -737,7 +737,7 @@ NEJ.define([
     };
     /**
      * 缓存验证信息
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__doSaveValidInfo
      * @param  {String}   arg0 - 验证标识
@@ -757,7 +757,7 @@ NEJ.define([
     };
     /**
      * 验证节点
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__doCheckValidity
      * @param  {String|Node} arg0 - 节点
@@ -817,7 +817,7 @@ NEJ.define([
     };
     /**
      * 显示信息
-     * 
+     *
      * @protected
      * @method module:util/form/form._$$WebForm#__doShowMessage
      * @param  {String|Node} arg0 - 表单元素节点
@@ -863,7 +863,7 @@ NEJ.define([
     })();
     /**
      * 显示提示信息
-     * 
+     *
      * @method module:util/form/form._$$WebForm#_$showTip
      * @param  {String|Node} arg0 - 表单元素节点或者名称
      * @param  {String}      arg1 - 显示信息
@@ -877,7 +877,7 @@ NEJ.define([
     };
     /**
      * 显示验证通过信息
-     * 
+     *
      * @method module:util/form/form._$$WebForm#_$showMsgPass
      * @param  {String|Node} arg0 - 表单元素节点或者名称
      * @param  {String}      arg1 - 显示信息
@@ -892,7 +892,7 @@ NEJ.define([
     };
     /**
      * 显示错误信息
-     * 
+     *
      * @method module:util/form/form._$$WebForm#_$showMsgError
      * @param  {String|Node} arg0 - 表单元素节点或者名称
      * @param  {String}      arg1 - 显示信息
@@ -904,7 +904,7 @@ NEJ.define([
     };
     /**
      * 设置表单控件值
-     * 
+     *
      * @method module:util/form/form._$$WebForm#_$setValue
      * @param  {String} arg0 - 表单控件名称
      * @param  {String} arg1 - 值
@@ -965,7 +965,7 @@ NEJ.define([
     })();
     /**
      * 取指定名称的表单控件对象
-     * 
+     *
      * @method module:util/form/form._$$WebForm#_$get
      * @param  {String} arg0 - 控件名称
      * @return {Node}          表单控件对象
@@ -975,7 +975,7 @@ NEJ.define([
     };
     /**
      * 取当前表单节点
-     * 
+     *
      * @method module:util/form/form._$$WebForm#_$form
      * @return {Node} 当前封装的表单节点
      */
@@ -984,7 +984,7 @@ NEJ.define([
     };
     /**
      * 取表单数据
-     * 
+     *
      * @method module:util/form/form._$$WebForm#_$data
      * @return {Object} 数据集合
      */
@@ -1057,7 +1057,7 @@ NEJ.define([
     })();
     /**
      * 重置表单
-     * 
+     *
      * @method module:util/form/form._$$WebForm#_$reset
      * @return {Void}
      */
@@ -1077,7 +1077,7 @@ NEJ.define([
     })();
     /**
      * 提交表单
-     * 
+     *
      * @method module:util/form/form._$$WebForm#_$submit
      * @return {Void}
      */
@@ -1086,7 +1086,7 @@ NEJ.define([
     };
     /**
      * 刷新验证信息
-     * 
+     *
      * @method module:util/form/form._$$WebForm#_$refresh
      * @return {Void}
      */
@@ -1109,7 +1109,7 @@ NEJ.define([
     })();
     /**
      * 验证表单或者表单控件
-     * 
+     *
      * @method module:util/form/form._$$WebForm#_$checkValidity
      * @param  {String|Node} arg0 - 表单控件，没有输入表示验证整个表单
      * @return {Boolean}            表单是否通过验证

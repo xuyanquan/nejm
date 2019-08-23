@@ -1,6 +1,6 @@
 {
-  "name": "nejm",
-  "version": "1.0.1",
+  "name": "@mammut-fe/nejm",
+  "version": "1.0.0",
   "description": "方便在nej中使用es6",
   "files": [
     "util",
